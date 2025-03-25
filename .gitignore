@@ -109,3 +109,7 @@ Thumbs.db
 # Launch and project files
 *.launch
 *.si4project/ 
+
+*.*.*.uvguix.xiang
+
+001_gpio_test/MDK-ARM/001_gpio_test.uvguix.xiang
