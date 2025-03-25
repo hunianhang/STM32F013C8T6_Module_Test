@@ -56,12 +56,14 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 uint8_t pData = 0;
+uint8_t u1_flag = 0;
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 		if(huart == &huart1)
 		{
 		//	if(pData == 'a')
 				HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
+				u1_flag = 1;
 		//	else 
 		//		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_RESET);
 			HAL_UART_Receive_IT(&huart1,&pData,1);
@@ -102,21 +104,20 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
-	
 	HAL_UART_Receive_IT(&huart1,&pData,1);
 	
-
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	uint8_t txBuf = 'a';
   while (1)
   {
-		//HAL_UART_Transmit(&huart1, &txBuf,1,HAL_MAX_DELAY);
-		//HAL_UART_RxCpltCallback(&huar1);
+		if(u1_flag == 1) 
+		{
+			HAL_UART_Transmit(&huart1, &pData,1,HAL_MAX_DELAY);
+			u1_flag = 0;
+		}
+		
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

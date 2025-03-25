@@ -110,6 +110,7 @@ Thumbs.db
 *.launch
 *.si4project/ 
 
-*.*.*.uvguix.xiang
+*.*.uvguix.xiang
 
 001_gpio_test/MDK-ARM/001_gpio_test.uvguix.xiang
+002_uart_test/MDK-ARM/002_uart_test.uvguix.xiang
